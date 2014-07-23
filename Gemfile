@@ -15,6 +15,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'clearance'
 
+gem 'high_voltage', '~> 2.2.1'
+
 group :development do
   gem 'spring'
 
