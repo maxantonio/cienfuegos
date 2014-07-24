@@ -6,7 +6,6 @@ class Post < ActiveRecord::Base
     else
       self.body
     end
-
   end
 
 end
