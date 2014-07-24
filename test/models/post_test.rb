@@ -8,4 +8,10 @@ class PostTest < ActiveSupport::TestCase
     assert_not post.valid?
   end
 
+  test "should not save without a body" do
+    post = posts(:paper)
+    post.body = ""
+    assert_not post.valid?
+  end
+
 end
