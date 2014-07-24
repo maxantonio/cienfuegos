@@ -28,4 +28,5 @@ end
 group :test do
   gem 'minitest-reporters'
   gem 'capybara', '~> 2.4.1'
+  gem 'launchy', '~> 2.4.2'
 end
