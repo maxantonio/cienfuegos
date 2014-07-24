@@ -16,6 +16,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'clearance'
 
 gem 'high_voltage', '~> 2.2.1'
+gem 'ckeditor', '~> 4.1.0'
 
 group :development do
   gem 'spring'

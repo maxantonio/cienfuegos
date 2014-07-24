@@ -8,7 +8,8 @@
     <% end %>
 
     <h2><%= @post.title %></h2>
-    <p><%= @post.body %></p>
+    <p><%= render html: @post.body.html_safe %></p>
+
 
     <div class="post-btns">
       <%= link_to 'Edit', edit_post_path(@post), class: "btn btn-info" %>
