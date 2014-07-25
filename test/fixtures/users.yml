@@ -1,5 +1,11 @@
 tim:
-  name: Tim
+  name: Tim Cook
   email: tim@apple.com
+  encrypted_password: <%= BCrypt::Password.create("foobar", cost: 4) %>
+  remember_token: <%= Clearance::Token.new %>
+
+john:
+  name: John Applesed
+  email: john@apple.com
   encrypted_password: <%= BCrypt::Password.create("foobar", cost: 4) %>
   remember_token: <%= Clearance::Token.new %>
