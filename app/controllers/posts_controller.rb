@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    @posts = Post.all
+    @posts = User.find(current_user).posts
   end
 
   # GET /posts/1
@@ -23,6 +23,7 @@ class PostsController < ApplicationController
   # POST /posts
   def create
     @post = Post.new(post_params)
+    @post.user_id = current_user.id
 
     if @post.save
       redirect_to @post, notice: 'Post was successfully created.'
