@@ -1,8 +1,58 @@
 <div class="row">
-  <div class="col-md-12">
 
-    <h1>Admin section</h1>
+  <div class="col-md-3">
+    <h2>Basic stats</h2><br>
 
+    <div class="media">
+      <div class="pull-left">
+        <span class="glyphicon glyphicon-user glyphicon-lg"></span>
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading">Users</h4>
+        <p> Quantity: <%= @users_qty %></p>
+      </div>
+    </div>
+    <br>
+    <div class="media">
+      <div class="pull-left">
+        <span class="glyphicon glyphicon-pencil glyphicon-lg"></span>
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading">Posts</h4>
+        <p> Quantity: <%= @posts_qty %></p>
+      </div>
+    </div>
   </div>
+
+  <div class="col-md-9">
+    <h2>Published articles</h2>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Body</th>
+          <th>Controls</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @posts.each do |post| %>
+        <tr>
+          <td><%= post.title %></td>
+          <td><%= post.body_truncated.html_safe %></td>
+          <td>
+          <%= link_to "/admin/#{post.id}", class: "btn btn-default" do %>
+            <span class="glyphicon glyphicon-search"></span><% end %>
+          <%= link_to "/admin/#{post.id}/edit", class: "btn btn-default" do %>
+            <span class="glyphicon glyphicon-edit"></span><% end %>
+          <%= link_to "/admin/#{post.id}", method: :delete, class: "btn btn-default" do %>
+            <span class="glyphicon glyphicon-remove"></span><% end %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
 </div>
 
