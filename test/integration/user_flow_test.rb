@@ -32,7 +32,22 @@ class UserFlowTest < ActionDispatch::IntegrationTest
     click_button 'Sign in'
 
     assert_not page.has_content?('Apple announcement'), 'The Apple announcement belongs to another user.'
+  end
 
+  test "when users can't trick the url to hack access" do
+    # Make papers fixture belongs to john
+    paper = posts(:paper)
+    paper.user_id = users(:john).id
+    paper.save
+
+    visit sign_in_path
+    fill_in "Email", with: "tim@apple.com"
+    fill_in "Password", with: "foobar"
+    click_button "Sign in"
+
+    visit "/posts/#{paper.id}/edit"
+
+    assert_not page.has_content?('Swift 101'), 'The Swift 101 announcement belongs to another user'
   end
 
 end

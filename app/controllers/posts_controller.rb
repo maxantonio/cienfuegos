@@ -55,6 +55,11 @@ class PostsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params[:id])
+      if current_user
+        if @post.user_id != current_user.id
+          redirect_to posts_path
+        end
+      end
     end
 
     # Only allow a trusted parameter "white list" through.

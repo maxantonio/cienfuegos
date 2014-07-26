@@ -2,8 +2,11 @@ require 'test_helper'
 
 class PostsControllerTest < ActionController::TestCase
   setup do
+    tim = users(:tim)
     @post = posts(:paper)
-    sign_in_as(users(:tim))
+    @post.user_id = tim.id
+    @post.save
+    sign_in_as(tim)
   end
 
   test "should get index" do
