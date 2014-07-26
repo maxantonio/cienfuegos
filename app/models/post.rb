@@ -14,4 +14,12 @@ class Post < ActiveRecord::Base
     end
   end
 
+  def body_preview
+    if self.body.length > 400
+      "#{self.body[0..400]} ..."
+    else
+      self.body
+    end
+  end
+
 end

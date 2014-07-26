@@ -1,11 +1,12 @@
 <div class="row">
   <div class="col-md-12">
 
-    <%= link_to 'New Post', new_post_path, class: 'btn btn-primary' %>
+    <% if signed_in? %>
 
-    <br><br>
+      <%= link_to 'New Post', new_post_path, class: 'btn btn-primary' %>
+      <br><br>
 
-    <div class="row">
+      <div class="row">
 
       <% @posts.each do |post| %>
 
@@ -32,6 +33,33 @@
       <% end %>
 
     </div>
+
+    <% else %>
+
+      <h3>Public Posts</h3>
+
+      <hr>
+
+      <% if @posts.count == 0 %>
+        <p>Sorry, there aren't any post created yet. Do you want to be the first one ?</p>
+        <p>
+          <%= link_to 'Create post', new_post_path %>
+        </p>
+      <% else %>
+
+        <article class="post">
+          <% @posts.each do |post| %>
+            <%= link_to post.title, "/posts/#{post.id}", class: 'big-link' %>
+            <p><%= post.body_preview.html_safe %></p>
+            <%= link_to 'Continue Reading', "/posts/#{post.id}" %>
+          <% end %>
+        </article>
+
+      <% end %>
+
+
+
+    <% end %>
 
   </div>
 </div>

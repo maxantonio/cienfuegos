@@ -1,10 +1,14 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_filter :authorize
+  before_filter :authorize, except: [:index, :show]
 
   # GET /posts
   def index
-    @posts = User.find(current_user).posts
+    if current_user == nil
+      @posts = Post.all
+    else
+      @posts = User.find(current_user).posts
+    end
   end
 
   # GET /posts/1
